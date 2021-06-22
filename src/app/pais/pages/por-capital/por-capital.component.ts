@@ -36,4 +36,10 @@ export class PorCapitalComponent implements OnInit {
     this.errorFlag = false;
     // TODO: crear sugerencias
   }
+
+  getClasesCSS(): string {
+    return this.errorFlag === false
+      ? 'row animate__animated animate__fadeIn'
+      : 'row animate__animated animate__fadeOut';
+  }
 }

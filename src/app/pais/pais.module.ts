@@ -9,6 +9,7 @@ import { PorRegionComponent } from './pages/por-region/por-region.component';
 import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
 import { PaisTablaComponent } from './components/pais-tabla/pais-tabla.component';
 import { PaisInputComponent } from './components/pais-input/pais-input.component';
+import { NotFoundMessageComponent } from './components/not-found-message/not-found-message.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PaisInputComponent } from './components/pais-input/pais-input.component
     VerPaisComponent,
     PaisTablaComponent,
     PaisInputComponent,
+    NotFoundMessageComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [

@@ -5,15 +5,24 @@
     <app-pais-input
       (onEnter)="buscar($event)"
       (onDebounce)="sugerencia($event)"
-      placeholder = "Buscar país..."
+      placeholder="Buscar país..."
     ></app-pais-input>
   </div>
 </div>
+<ul class="list-group">
+  <li
+    *ngFor="let country of suggestedCountries"
+    class="list-group-item list-group-item-action"
+  >
+    <a class="nav-link" [routerLink]="['/pais', country.alpha2Code]">{{ country.name }}</a>
+  </li>
+</ul>
 <hr />
-<div *ngIf="errorFlag" class="alert alert-danger">
-  No se encontró nada con el término {{ termino }}
-</div>
-<div *ngIf="countries.length > 0" class="row">
+<app-not-found-message
+  [termino]="termino"
+  [errorFlag]="errorFlag"
+></app-not-found-message>
+<div *ngIf="countries.length > 0" [class]="getClasesCSS()">
   <div class="col">
     <app-pais-tabla [countries]="countries"></app-pais-tabla>
   </div>

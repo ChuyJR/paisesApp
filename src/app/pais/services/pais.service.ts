@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Injectable, Input } from '@angular/core';
+import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -13,21 +13,34 @@ export class PaisService {
 
   constructor(private http: HttpClient) {}
 
+  get httpParams() {
+    return new HttpParams().set(
+      'fields',
+      'name;capital;alpha2Code;flag;population'
+    );
+  }
+
   buscarPais(termino: string): Observable<Country[]> {
-    console.log('Buscando país por nombre')
+    console.log('Buscando país por nombre');
     const url = `${this.apiUrl}/name/${termino}`;
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
-  buscarCapitarl(termino: string): Observable<Country[]>{
-    console.log('Buscando país por capital')
+  buscarCapitarl(termino: string): Observable<Country[]> {
+    console.log('Buscando país por capital');
     const url = `${this.apiUrl}/capital/${termino}`;
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
-  getPaisPorAlpha(id: string): Observable<Country>{
-    console.log('Detalle País')
+  getPaisPorAlpha(id: string): Observable<Country> {
+    console.log('Detalle País');
     const url = `${this.apiUrl}/alpha/${id}`;
     return this.http.get<Country>(url);
+  }
+
+  buscarRegion(id: string): Observable<Country[]> {
+    console.log('Buscando país por región');
+    const url = `${this.apiUrl}/region/${id}`;
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 }

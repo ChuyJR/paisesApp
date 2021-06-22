@@ -10,11 +10,12 @@
   </div>
 </div>
 <hr />
-<div *ngIf="errorFlag" class="alert alert-danger">
-  No se encontró nada con el término {{ termino }}
-</div>
-<div *ngIf="countries.length > 0" class="row">
-  <div class="col">
+<app-not-found-message
+  [termino]="this.termino"
+  [errorFlag]="this.errorFlag"
+></app-not-found-message>
+<div *ngIf="countries.length > 0" [class]="getClasesCSS()">
+  <div class="col" >
     <app-pais-tabla [countries]="countries"></app-pais-tabla>
   </div>
 </div>
